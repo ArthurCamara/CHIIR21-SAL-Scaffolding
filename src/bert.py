@@ -16,7 +16,6 @@ import logging
 import wandb
 torch.multiprocessing.set_start_method('fork', force=True)
 logging.getLogger("transformers").setLevel(logging.WARNING)
-warnings.filterwarnings("ignore")
 config = wandb.config
 
 def init_optimizer(

@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/ssd2/arthur/searchx-scaffolding/src/generate_relevants.py", line 12, in <module>
+    assert "data_home" in config
+  File "/home/arthur/miniconda3/envs/bert/lib/python3.7/site-packages/wandb/wandb_config.py", line 202, in __getitem__
+    return self._items[key]
+KeyError: 0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ssd/home/arthur/.vscode-server/extensions/ms-python.python-2019.11.50794/pythonFiles/ptvsd_launcher.py", line 43, in <module>
+    main(ptvsdArgs)
+  File "/ssd/home/arthur/.vscode-server/extensions/ms-python.python-2019.11.50794/pythonFiles/lib/python/old_ptvsd/ptvsd/__main__.py", line 432, in main
+    run()
+  File "/ssd/home/arthur/.vscode-server/extensions/ms-python.python-2019.11.50794/pythonFiles/lib/python/old_ptvsd/ptvsd/__main__.py", line 316, in run_file
+    runpy.run_path(target, run_name='__main__')
+  File "/home/arthur/miniconda3/envs/bert/lib/python3.7/runpy.py", line 263, in run_path
+    pkg_name=pkg_name, script_name=fname)
+  File "/home/arthur/miniconda3/envs/bert/lib/python3.7/runpy.py", line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File "/home/arthur/miniconda3/envs/bert/lib/python3.7/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/ssd2/arthur/searchx-scaffolding/src/generate_relevants.py", line 15, in <module>
+    try:
+FileNotFoundError: [Errno 2] No such file or directory: 'config-defaults.yaml'

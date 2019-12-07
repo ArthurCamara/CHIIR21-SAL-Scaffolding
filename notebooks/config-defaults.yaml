@@ -7,24 +7,24 @@ bert_class:
 data_home:
   desc: Where to save data to
   value: "/ssd2/arthur/TRECCAR/data"
-raw_data_home:
-  desc: Path with TRECCAR raw data
-  value: "/ssd2/arthur/TRECCAR"
 logging_level:
   desc: Level for Python logger
   value: "INFO"
 force_steps:
   desc: Steps to forecefully run, even if the output file for the step is present
-  value: []
+  value: t
 number_of_cpus:
   desc: Number of CPUs to be used on parallel bits
-  value: 36
+  value: 24
+max_document_len:
+  desc: Maximum number of tokens to be considered in the document for the cut version of the dataset
+  value: 500
 split_percentage:
   desc: Percentage for test splitting
   value: .3
 negative_samples:
   desc: Number of negative samples for each positive sample
-  value: 10
+  value: 1
 ignore_gpu_ids:
   desc: GPU IDs to ignore when running
   value: [0, 1]
@@ -46,26 +46,10 @@ gradient_accumulation_steps:
   value: 1 
 train_loss_print:
   desc: Steps to use before logging loss
-  value: 50  # CHANGE THIS 
+  value: 20  # CHANGE THIS 
 eval_steps: 
   desc: Steps to run before running an evaluate step
-  value: 200  # CHANGE THIS
+  value: 40  # CHANGE THIS
 eval_sample:
-  desc: Sample size for run on eval during training
-  value: 1.0
-test_topics:
-  desc: Number of topics in the test dataset (Absolute, not only leaf)
-  value: 722
-corpus_size:
-  desc: Number of documents
-  value: 29794697
-
-indri_path:
-  desc: Path with indri binaries
-  value: /ssd2/arthur/indri/bin
-indri_top_k:
-  desc: Number of docs to retrieve from Indro
-  value: 500
-index_path:
-  desc: Path with Indri index with all wikipedia articles
-  value: /ssd2/arthur/TRECCAR/indexes/wikipedia_no_extra
+    desc: Sample size for run on eval during training
+    value: 1.0

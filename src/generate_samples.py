@@ -12,7 +12,7 @@ if not os.path.isdir(corpus_path):
 corpus_path = os.path.join(data_home, "data/wikipedia_paragaphs.trec")
 all_docs = dict()
 with open(corpus_path, 'w', encoding="utf-8") as outf:
-    for paragraph in tqdm(read_data.iter_paragraphs(open(paragraphs_path, 'rb'))):
+    for paragraph in tqdm(read_data.iter_paragraphs(open(paragraphs_path, 'rb')), desc="Dumping paragraphs in TREC format", total=config.corpus_size):
         text = paragraph.get_text()
         paragraph_id = paragraph.para_id
         outf.write(doc_format.format(paragraph_id, text))
@@ -58,8 +58,7 @@ with open(test_topics_path, 'w', encoding='utf-8') as outf:
                 outf.write("{};{};{}\n".format(_id, name, " ".join(hierarchy)))
 
 
-
-train_path = os.path.join(data_home, "benchmarkY1/benchmarkY1-train/train.pages.cbor-outlines.cbor")
+ train_path = os.path.join(data_home, "benchmarkY1/benchmarkY1-train/train.pages.cbor-outlines.cbor")
 train_topics_path = os.path.join(data_home, "data/topics/train-topics_flat.txt")
 with open(train_topics_path, 'w', encoding='utf-8') as outf:
     for page in tqdm(read_data.iter_annotations(open(train_path, 'rb'))):
@@ -73,12 +72,10 @@ from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 from collections import defaultdict
 relevants = defaultdict(lambda: set())
-all_docs =
 for line in tqdm(open(os.path.join(data_home, 'benchmarkY1/benchmarkY1-train/train.pages.cbor-hierarchical.qrels'))):
     topic, _, doc, label = line.strip().split()
     if label == "1":
         relevants[topic].add(doc)
-
 
 def truncate_seq_pair(tokens_a, tokens_b, max_length=509):
     while True:
