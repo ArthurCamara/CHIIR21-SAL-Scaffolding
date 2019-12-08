@@ -64,10 +64,10 @@ def process_chunk(docs_path, chunk_no, block_offset, no_lines, config):
     with open(partial_doc_path, 'w', encoding="utf-8") as outf, open(partial_doc_path_bert, 'w', encoding='utf-8') as outf_bert:  # noqa E501
         for line in tqdm(lines, desc="Running for chunk {}".format(chunk_no), position=position):
             try:
-                doc_id, text = line.strip().split("\t")
+                doc_id, text = line.split("\t")
+                text = text.replace("\n", "")
             except ValueError:
-                print(line)
-                break
+                continue
             bert_text = [x for x in tokenizer.tokenize(text)]
             tokenized_text = ' '.join(bert_text).replace("##", "")
             outf.write(output_line_format.format(doc_id, tokenized_text))
@@ -77,7 +77,10 @@ def tokenize_docs(docs_path):
     """Tokenize a docs file in tsv format, outputting a tsv. Also generates offset file. Can take a LONG time"""
 
     assert os.path.isfile(docs_path), "Could not find documents file at {}".format(docs_path)
-    # Load in memory, split blocks and run in paralel. Later
+    # if os.path.exists(os.path.join(config.data_home, "docs/full_docs.tsv")) and os.path.exists(os.path.join(config.data_home, "docs/full_docs.tokenized.bert")):
+        # logging.info("Skipping tokenization. File already exists.")
+        # return
+    # Load in memory, split blocks and run in paralel.
     excess_lines = config.corpus_size % config.number_of_cpus
     number_of_chunks = config.number_of_cpus
     if excess_lines > 0:
@@ -90,27 +93,20 @@ def tokenize_docs(docs_path):
     if config.number_of_cpus < 2:
         block_offset[0] = 0
     elif not os.path.isfile(os.path.join(config.data_home, "block_offset_{}.pkl".format(config.number_of_cpus))):
-        pbar = tqdm(total=config.corpus_size, desc="Creating offset file for docs")
         with open(docs_path, encoding="utf-8") as inf:
             current_chunk = 0
             counter = 0
             line = True
             while line:
-                pbar.update()
                 if counter % lines_per_chunk == 0:
                     block_offset[current_chunk] = inf.tell()
                     current_chunk += 1
                 line = inf.readline()
                 counter += 1
-        pbar.close()
         pickle.dump(block_offset, open(os.path.join(config.data_home, "block_offset_{}.pkl".format(config.number_of_cpus)), 'wb'))  # noqa E501
     else:
         block_offset = pickle.load(open(os.path.join(config.data_home, "block_offset_{}.pkl".format(config.number_of_cpus)), 'rb'))  # noqa E501
-    pbar = tqdm(total=config.number_of_cpus)
     assert len(block_offset) == config.number_of_cpus
-
-    def update(*a):
-        pbar.update()
 
     if config.number_of_cpus == 1:
         process_chunk(docs_path, 0, block_offset, lines_per_chunk, dict(config))
@@ -119,7 +115,7 @@ def tokenize_docs(docs_path):
     jobs = []
     for i in range(len(block_offset)):
         jobs.append(pool.apply_async(process_chunk, args=(
-            docs_path, i, block_offset, lines_per_chunk, dict(config)), callback=update))
+            docs_path, i, block_offset, lines_per_chunk, dict(config))))
     for job in jobs:
         job.get()
     pool.close()
@@ -129,14 +125,14 @@ def tokenize_docs(docs_path):
             partial_path = os.path.join(config.data_home, "tmp", "docs-{}".format(i))
             for line in open(partial_path, encoding="utf-8"):
                 outf.write(line)
-            os.remove(partial_path)
+            # os.remove(partial_path)
 
     with open(os.path.join(config.data_home, "docs/full_docs.tokenized.bert"), 'w', encoding="utf-8") as outf:
         for i in tqdm(range(config.number_of_cpus), desc="Merging BERT file"):
             partial_bert_path = os.path.join(config.data_home, "tmp", "docs-{}.bert".format(i))
             for line in open(partial_bert_path, encoding="utf-8"):
                 outf.write(line)
-            os.remove(partial_bert_path)
+            # os.remove(partial_bert_path)
 
 def get_level2(headings, parents, hierarchy=[], depth=1):
     """extract all leaves or level2 headings from an hierarchy"""
@@ -158,6 +154,7 @@ def get_content(doc_id, doc_file, offset_dict):
 def generate_docs_offset(doc_file):
     offset_path = doc_file + ".offset"
     if os.path.isfile(offset_path):
+        logging.info("Already found offset dict at {}. skipping".format(offset_path))
         return pickle.load(open(offset_path, 'rb'))
     offset_dict = dict()
     pbar = tqdm(total=config.corpus_size, desc="Generating doc offset dictionary")
@@ -193,7 +190,7 @@ def generate_dataset():
                 text = paragraph.get_text().replace("\n", " ").replace("\t", " ")
                 paragraph_id = paragraph.para_id
                 outf.write("{}\t{}\n".format(paragraph_id, text))
-    
+    tokenize_docs(docs_path)
     tokenized_docs_path = os.path.join(config.data_home, "docs/full_docs.tokenized.bert")
     offset_dict =  generate_docs_offset(tokenized_docs_path)
 

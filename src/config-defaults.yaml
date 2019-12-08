@@ -60,7 +60,7 @@ corpus_size:
   desc: Number of documents
   value: 29794697
 
-indri_path:
+indri_bin_path:
   desc: Path with indri binaries
   value: /ssd2/arthur/indri/bin
 indri_top_k:

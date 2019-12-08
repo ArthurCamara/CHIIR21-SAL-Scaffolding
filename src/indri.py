@@ -53,7 +53,7 @@ def generate_index():
         return
     with open(param_file, 'w') as outf:
         outf.write(param_file_format)
-    wandb.save(param_file)
+    # wandb.save(param_file)
     # Run indri processing
     cmd = "{} {}".format(os.path.join(config.indri_bin_path, "IndriBuildIndex"), param_file)
     logging.info(cmd)
@@ -97,7 +97,7 @@ def run_queries(queries):
         logging.info("Creating runs folder at %s", os.path.join(config.data_home, "runs"))
     run_path = os.path.join(config.data_home, "runs/QL.run")
     if not os.path.isfile(run_path) or "query" in config.force_steps:
-        indri_path = os.path.join(config.indri_path, "IndriRunQuery")
+        indri_path = os.path.join(config.indri_bin_path, "IndriRunQuery")
         logging.info("Running Indri process with command %s %s", indri_path, param_path)
         output = subprocess.check_output([indri_path, param_path])
         with open(run_path, 'w') as outf:
