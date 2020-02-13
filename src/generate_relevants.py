@@ -1,7 +1,6 @@
 import warnings
 warnings.filterwarnings("ignore")
 import logging
-logging.getLogger("transformers").setLevel(logging.WARNING)
 import os
 
 try:
@@ -26,7 +25,6 @@ except:
     config = dotdict(config)
 
 
-from transformers import DistilBertForSequenceClassification, BertTokenizer
 import numpy as np
 import multiprocessing as mp
 from multiprocessing import current_process
@@ -36,18 +34,10 @@ from bert_dataset import BERTDataset
 from collections import defaultdict
 import pickle
 from trec_car import read_data
-from indri import generate_index, run_queries
-
-def truncate_seq_pair(tokens_a, tokens_b, max_length=509):
-    while True:
-        total_length = len(tokens_a) + len(tokens_b)
-        if total_length <= max_length:
-            break
-        if len(tokens_a) < len(tokens_b):
-            tokens_b.pop()
-        else:
-            tokens_a.pop()
-
+from indri import generate_index, run_queries, generate_custom_index
+from bert_dataset import BERTDataset
+from bert import get_scores
+import urllib
 
 def process_chunk(docs_path, chunk_no, block_offset, no_lines, config):
     position=chunk_no
@@ -77,9 +67,9 @@ def tokenize_docs(docs_path):
     """Tokenize a docs file in tsv format, outputting a tsv. Also generates offset file. Can take a LONG time"""
 
     assert os.path.isfile(docs_path), "Could not find documents file at {}".format(docs_path)
-    # if os.path.exists(os.path.join(config.data_home, "docs/full_docs.tsv")) and os.path.exists(os.path.join(config.data_home, "docs/full_docs.tokenized.bert")):
-        # logging.info("Skipping tokenization. File already exists.")
-        # return
+    if os.path.exists(os.path.join(config.data_home, "docs/full_docs.tsv")) and os.path.exists(os.path.join(config.data_home, "docs/full_docs.tokenized.bert")):
+        logging.info("Skipping tokenization. File already exists.")
+        return
     # Load in memory, split blocks and run in paralel.
     excess_lines = config.corpus_size % config.number_of_cpus
     number_of_chunks = config.number_of_cpus
@@ -149,7 +139,11 @@ def get_content(doc_id, doc_file, offset_dict):
     with open(doc_file) as f:
         f.seek(offset)
         doc = f.readline()
-    return eval(doc.split("\t")[1].strip())
+    if doc_file.endswith("bert"):
+        return eval(doc.split("\t")[1].strip())
+    else:
+        doc_text = "\t".join(doc.split("\t")[1:])
+        return doc_text.strip()
 
 def generate_docs_offset(doc_file):
     offset_path = doc_file + ".offset"
@@ -159,7 +153,7 @@ def generate_docs_offset(doc_file):
     offset_dict = dict()
     pbar = tqdm(total=config.corpus_size, desc="Generating doc offset dictionary")
     empty_docs = 0
-    with open(doc_file) as inf:
+    with open(doc_file, encoding="utf-8", errors="surrogateescape") as inf:
         location = 0
         line = True
         while line:
@@ -167,6 +161,7 @@ def generate_docs_offset(doc_file):
             try:
                 doc_id, _ = line.split("\t")
             except (IndexError, ValueError):
+                print(line)
                 empty_docs +=1
                 continue
             offset_dict[doc_id] = location
@@ -177,13 +172,12 @@ def generate_docs_offset(doc_file):
     print(len(offset_dict))
     return offset_dict
 
-
 def generate_dataset():
     """Generate all possible triples of subtopic and document
     Add these to a file in the BERTDataset format (subtopic_id-doc_id\t[bert imput list])
     """    
     paragraphs_path = os.path.join(config.raw_data_home, "paragraphCorpus/dedup.articles-paragraphs.cbor")
-    docs_path = os.path.join(config.data_home, "docs.tsv")
+    docs_path = os.path.join(config.data_home, "docs/docs.tsv")
     if not os.path.isfile(docs_path):
         with open(docs_path, 'w', encoding="utf-8") as outf:
             for paragraph in tqdm(read_data.iter_paragraphs(open(paragraphs_path, 'rb')), desc="Dumping paragraphs in tsv", total=config.corpus_size):
@@ -191,14 +185,12 @@ def generate_dataset():
                 paragraph_id = paragraph.para_id
                 outf.write("{}\t{}\n".format(paragraph_id, text))
     tokenize_docs(docs_path)
-    tokenized_docs_path = os.path.join(config.data_home, "docs/full_docs.tokenized.bert")
-    offset_dict =  generate_docs_offset(tokenized_docs_path)
 
     # Load and tokenize topics
-    topics_path = topics_path = os.path.join(config.raw_data_home, "benchmarkY2.public/benchmarkY2.cbor-outlines.cbor")
+    topics_path = os.path.join(config.raw_data_home, "benchmarkY1/benchmarkY1-train/train.pages.cbor-outlines.cbor")
     topics_to_use = []
-    all_queries = dict()
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+    
+    non_tokenized_queries = dict()
     for page in tqdm(read_data.iter_annotations(open(topics_path, 'rb')), total=65, desc="Reading and tokening topics"):
         # If the topic does not have hierarchy, we don't care about it
         if len(page.nested_headings()) == len(page.flat_headings_list()):
@@ -207,27 +199,60 @@ def generate_dataset():
         topics_to_use += topics_to_consider
         for topic_id, _, hierarchy in topics_to_consider:
             query = " ".join(hierarchy)
-            all_queries[topic_id] = tokenizer.tokenize(query)    
-    pickle.dump(topics_to_use, open(os.path.join(config.data_home, "level2topics.pkl"), 'wb'))
-    pickle.dump(all_queries, open(os.path.join(config.data_home, "tokenized_queries.pkl"), 'wb'))
-    query_list = [(q_id, query) for (q_id, query) in all_queries.items()]
-    retrieved, scores = run_queries(query_list)
+            non_tokenized_queries[topic_id] = query
+    # Load relevants based on qrels
+    relevant_per_doc = defaultdict(lambda:set())
 
-    # Run iteration
-    # pbar = tqdm(total=len(all_queries) * len(all_docs))
-    pbar = tqdm(total=(config.corpus_size * config.indri_top_k))
-    outf_file = os.path.join(config.data_home, "samples/test_all.txt")
-    formatter = "{}-{}\t{}\n"
-    with open(outf_file, 'w', encoding="utf-8") as outf:
-        for query_id, query in all_queries.items():
-            for doc_id in retrieved[query_id]:
-                doc = get_content(doc_id, tokenized_docs_path, offset_dict)
-                pbar.update()
-                truncate_seq_pair(query, doc)
-                final_version = ['[CLS]']+query+['[SEP]']+doc+['[SEP]']
-                assert len(final_version) <= 512
-                outf.write(formatter.format(query_id, doc_id, final_version))
+    qrel_path = os.path.join(config.raw_data_home, "benchmarkY1/benchmarkY1-train/train.pages.cbor-hierarchical.qrels")
+    for line in open(qrel_path):
+        topic, _, doc, _ = line.split(" ")
+        hierarchy = urllib.parse.unquote(topic).split("/")
+        if len(hierarchy) >= 2:
+            cannonical_id = "/".join(topic.split("/")[:3])
+            relevant_per_doc[doc].add(cannonical_id)
+
+    doc_format = """<DOC>
+    <DOCNO>{}</DOCNO>
+    <text>{}</text>
+    {}
+    </DOC>\n"""
     
+    
+    full_docs_offset = generate_docs_offset(docs_path)
+    final_docs_path = os.path.join(config.data_home, "docs/docs_with_relevance.trec")
+    with open(final_docs_path, 'w') as outf:
+        for _, doc in tqdm(enumerate(full_docs_offset), desc="dumping trec docs with scores", total = len(full_docs_offset)):
+            # doc_scores = []
+            relevant_docs_format ="<relevants>{}</relevants>"
+            doc_text = get_content(doc,docs_path, full_docs_offset)
+            relevant_topics = list(relevant_per_doc[doc])
+            if len(relevant_topics) > 0:
+                relevants = relevant_docs_format.format(",".join(relevant_topics))
+            else:
+                relevants  = relevant_docs_format.format(" ")
+            doc_full = doc_format.format(doc, doc_text, relevants)
+
+                # break
+    generate_custom_index(final_docs_path, "docs_with_relevants")
+
+
+def get_all_relevant_docs():
+    """ Return relevant docs to all queries"""
+    docs_path = os.path.join(config.data_home, "docs/clean_docs.tsv")
+    dict_offset = generate_docs_offset(docs_path)
+    qrel_path = os.path.join(config.raw_data_home, "benchmarkY1/benchmarkY1-train/train.pages.cbor-hierarchical.qrels")
+    relevants = []
+    for line in open(qrel_path):
+        _, _, doc_id, _ = line.split(" ")
+        doc_text = get_content(doc_id, docs_path, dict_offset)
+        relevants.append((doc_id, doc_text))
+    return relevants
+        
+
+    
+
+
+
 
 
 if __name__=="__main__":
@@ -236,4 +261,5 @@ if __name__=="__main__":
     Log.setLevel(level)
     generate_index()
 
-    generate_dataset()
+    # generate_dataset()
+

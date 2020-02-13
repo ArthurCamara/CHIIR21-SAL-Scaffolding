@@ -65,7 +65,24 @@ indri_bin_path:
   value: /ssd2/arthur/indri/bin
 indri_top_k:
   desc: Number of docs to retrieve from Indro
-  value: 500
+  value: 100
 index_path:
   desc: Path with Indri index with all wikipedia articles
   value: /ssd2/arthur/TRECCAR/indexes/wikipedia_no_extra
+possible_relevants:
+  desc: number of documents to be considered when building bert test file
+  value: 500
+bert_alpha:
+  desc: Alpha value to cobining BERT score with QL score -> alpha*BERT + (1-alpha) * QL
+  value: 0.85
+relevance_threshold:
+  desc: Minimum value to consider a document relevant to the unit or subtopic
+  value: 0.87
+cutoff_percentile:
+  desc: Percentile for relevance cutoff
+  value: 80
+topics:
+  desc: Topics to be used in the experiments
+  value: ["Subprime mortgage crisis", "Theory of mind", "Research in lithium-ion batteries", "Ethics", "Business cycle", "Genetically modified organism", "Norepinephrine", "Irritable bowel syndrome", "Radiocarbon dating considerations", "Noise-induced hearing loss"]
+    
+    

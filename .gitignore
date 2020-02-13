@@ -1,1 +1,10 @@
 src/wandb/*
+*.pkl
+src/__pycache__/*
+*.vscode
+notebooks/.ipynb_checkpoints/*
+*.csv
+notebooks/searchx_logs.json
+*.pyc
+*__pycache__/*
+

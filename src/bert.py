@@ -192,3 +192,105 @@ def evaluate(eval_dataset: BERTDataset,
     wandb.log(results)
     for key in sorted(results.keys()):
         logging.info("  %s = %s", key, str(results[key]))
+    
+def get_scores(samples_path, config):
+    preds_out_file = os.path.join(config.data_home, "predictions/")
+    preds_out_file = os.path.join(preds_out_file, "trecccar-top{}.tensor".format(config.possible_relevants))
+    if "bert" in config.force_steps or not os.path.isfile(preds_out_file): 
+        dataset = BERTDataset(samples_path, config.data_home, invert_label=True, labeled=False)
+        
+        random.seed(config.seed)
+        np.random.seed(config.seed)
+        torch.manual_seed(config.seed)
+        model_path = os.path.join(config.data_home, "models/distilbert-base-uncased-treccar")
+
+        # Set CUDA
+        model = DistilBertForSequenceClassification.from_pretrained(model_path)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(config.seed)
+            visible_gpus = list(range(torch.cuda.device_count()))
+            for _id in config.ignore_gpu_ids:
+                visible_gpus.remove(_id)
+            logging.info("Running with gpus {}".format(visible_gpus))
+            device = torch.device("cuda:{}".format(visible_gpus[0]))
+            model = torch.nn.DataParallel(model, device_ids=visible_gpus)
+            model.to(device)
+            train_batch_size = len(visible_gpus) * config.batch_per_device
+            logging.info("Effective train batch size of %d", train_batch_size)
+        else:
+            device = torch.device("cpu")
+            model.to(device)
+        logging.info("Using device: %s", str(device))
+        # wandb.watch(model)    
+        
+        preds_out_file = os.path.join(config.data_home, "predictions/")
+        if not os.path.isdir(preds_out_file):
+            os.makedirs(preds_out_file)
+        preds_out_file = os.path.join(preds_out_file, "trecccar-top{}.tensor".format(config.possible_relevants))
+        
+        batch_size = len(visible_gpus) * config.batch_per_device * 16
+        
+        nb_eval_steps = 0
+        preds = None
+        _preds = None
+
+        data_loader = DataLoader(
+            dataset,
+            batch_size=batch_size,
+            num_workers=0,
+            shuffle=False)
+
+        for  batch in tqdm(data_loader, desc="Batches", total=len(data_loader)):
+            model.eval()
+            with torch.no_grad():
+                inputs = {
+                    'input_ids': batch[0].to(device),
+                    'attention_mask': batch[1].to(device)}
+                outputs = model(**inputs)
+                logits = outputs[0]
+                nb_eval_steps += 1
+                if _preds is None:
+                    _preds = logits.detach().cpu().numpy()
+                else:
+                    batch_predictions = logits.detach().cpu().numpy()
+                    _preds = np.append(_preds, batch_predictions, axis=0)
+        torch.save(_preds, preds_out_file)
+        softmax = torch.nn.Softmax(dim=1)
+        preds = softmax(torch.as_tensor(_preds))[:, 0].cpu().numpy()
+        torch.save(preds, preds_out_file+".softmax")
+    
+    # Load QL scores and normalize
+    indri_run_file = os.path.join(config.data_home, "runs/QL.run")
+    current_topic = None    
+    current_topic_scores = []
+    QL_scores = []
+    all_ids = []
+    for line in tqdm(open(indri_run_file), desc="loading QL scores"):
+        topic, _, doc, _, score, _ =  line.split()
+        score = float(score)
+        if topic != current_topic and current_topic is not None:
+            QL_scores += list((current_topic_scores - np.min(current_topic_scores))/np.ptp(current_topic_scores))
+            current_topic_scores = []
+        current_topic_scores.append(score)
+        all_ids.append((topic, doc))
+        current_topic = topic
+    # Do the last one
+    QL_scores += list((current_topic_scores - np.min(current_topic_scores))/np.ptp(current_topic_scores))
+
+    #Load BERT scores
+    preds = torch.load(preds_out_file+".softmax")
+    assert len(preds) == len(QL_scores)
+    #Combine scores
+    doc_scores = defaultdict(lambda:defaultdict(lambda:0.0))
+    for (topic_id, doc_id), QL_score, BERT_score in tqdm(zip(all_ids, QL_scores, preds), desc="Computing final scores", total=len(QL_scores)):
+        beta = 1 - config.bert_alpha
+        final_score = config.bert_alpha * BERT_score + beta * QL_score
+        doc_scores[doc_id][topic_id] = final_score   
+    return doc_scores
+
+    
+
+
+
+
+
