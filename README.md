@@ -33,7 +33,7 @@ Any questions, please open an issue or send an email to:
 If you want to cite this paper, please use:
 
 ```
-@INPROCEEDINGS{Camara2021,
+@INPROCEEDINGS{Camara2021CHIIR,
   title     = "Searching to Learn with Instructional Scaffolding",
   booktitle = "Proceedings of the 2021 Conference on Human Information
                Interaction and Retrieval",
