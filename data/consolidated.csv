@@ -1,0 +1,128 @@
+,user,absolute_learning_gain,realized_learning_gain,type,average_query_len,number_of_queries,number_of_views,number_of_clicks,session_duration,one_two_to_four,one_two_to_three,three_to_four,one_two_no_change,other,valid_questions,topic,average_dwell_time,unique_docs,number_of_bookmars,education_level,search_time
+0,5ce456ea65535c0019185cd6,0.7,0.35,control,5.5,2,35,14,2407,3,1,0,6,0,4,Subprime mortgage crisis,22,12,9,Other,2086
+1,56e06fde907c12000ae3ab94,1.1,0.55,visual,2.75,4,45,8,3835,5,1,0,4,0,4,Radiocarbon dating considerations,180,6,1,Bachelor's degree(s),1994
+2,5d53ec22cb1bcf0015f59a65,1.0,0.5263157894736842,visual,1.8333333333333333,12,145,23,3399,4,1,1,4,0,4,Ethics,4,21,21,Bachelor's degree(s),2427
+3,5cdd2cd048d5f100155fabce,1.0,0.5,control,4.0,4,45,9,2358,5,0,0,5,0,4,Subprime mortgage crisis,202,7,2,Bachelor's degree(s),1784
+4,5d78fcd59066d90001a4977a,0.4,0.2,visual,3.6666666666666665,9,95,15,2230,1,2,0,7,0,4,Radiocarbon dating considerations,91,15,7,Bachelor's degree(s),1773
+5,5c8d54044597c00001459b8a,0.9,0.6,visual,4.333333333333333,12,155,12,2631,3,0,3,3,1,4,Subprime mortgage crisis,104,10,6,Bachelor's degree(s),1784
+6,5ca3ab263c73ca00165e1f47,0.5,0.2631578947368421,visual,1.0,2,25,7,2937,1,3,0,5,1,4,Ethics,242,4,3,High School,1791
+7,5be9502561009a00018fd2fb,0.4,0.2,visual,1.8571428571428572,14,225,24,3324,0,4,0,6,0,4,Ethics,35,21,10,High School,3086
+8,5b28d18b007d870001c80b4b,0.6,0.4615384615384615,control,4.166666666666667,6,85,9,4611,1,2,2,2,3,4,Subprime mortgage crisis,185,9,0,Bachelor's degree(s),1828
+9,5b6f45f685efdf00018a4228,0.2,0.11111111111111112,visual,4.75,4,45,4,2675,0,2,0,7,1,4,Subprime mortgage crisis,420,4,4,High School,1865
+10,5db31089a1f8d3000c10a6c5,0.4,0.23529411764705885,control,2.6666666666666665,3,65,3,3494,1,2,0,5,2,4,Ethics,53,3,3,High School,414
+11,5dfb852818c365010b98958e,1.6,0.888888888888889,visual,5.0,2,45,7,3819,8,0,0,1,1,4,Subprime mortgage crisis,148,7,6,High School,3107
+12,5dae21b2232c620011d6a06e,1.0,0.5,control,4.2,10,165,44,2374,5,0,0,5,0,4,Subprime mortgage crisis,18,44,23,High School,1806
+13,5de682581abb505f23455788,0.2,0.125,visual,4.090909090909091,11,135,19,2586,0,2,0,4,4,4,Irritable bowel syndrome,43,19,10,Bachelor's degree(s),2398
+14,5c83374a1b699a00111c2e2d,0.3,0.15,control,3.25,4,125,16,3209,1,1,0,8,0,4,Radiocarbon dating considerations,33,14,110,Bachelor's degree(s),2647
+15,59ac162fa372d6000157ed8e,0.5,0.29411764705882354,control,1.0,3,35,8,3091,2,1,0,5,2,4,Ethics,200,7,7,Master's degree(s),1825
+16,5c34e402b96e660001cb5ce6,0.2,0.10526315789473685,control,3.375,8,84,19,2646,0,2,0,7,1,4,Genetically modified organism,61,16,10,High School,2431
+17,5ba8a1d2c16a9c0001497a21,0.5,0.2777777777777778,control,3.5,4,165,10,2636,0,5,0,3,2,4,Genetically modified organism,43,8,8,Master's degree(s),2157
+18,5e17956d94a2dc099b08aee2,0.1,0.05,control,3.888888888888889,9,165,17,3234,0,1,0,9,0,4,Radiocarbon dating considerations,71,16,8,Doctorate degree,1790
+19,5df1078df9e75001269f9aef,0.8,0.4,visual,2.5625,16,175,20,4870,0,8,0,2,0,4,Radiocarbon dating considerations,51,16,7,High School,1754
+20,5d21228723c079001923a6ba,0.7,0.3333333333333333,visual,5.818181818181818,11,115,25,2689,2,2,1,6,0,4,Noise-induced hearing loss,42,17,14,Bachelor's degree(s),2316
+21,5b213220809d160001a2c36d,0.8,0.4444444444444445,control,2.375,8,85,9,4033,4,0,0,5,1,4,Irritable bowel syndrome,31,8,4,High School,3217
+22,5e0c773013064443636d7d91,0.2,0.1,control,3.0,2,85,16,2487,0,2,0,8,0,4,Radiocarbon dating considerations,38,14,9,High School,1750
+23,5bbbf5339697e20001462af2,0.3,0.13636363636363635,control,2.0,2,75,21,3983,0,3,0,8,0,4,Noise-induced hearing loss,61,16,30,Master's degree(s),1797
+24,5d45bc6dde2d3a00167079db,0.4,0.2,control,2.857142857142857,7,130,9,5601,1,2,0,7,0,4,Irritable bowel syndrome,122,7,10,Master's degree(s),2180
+25,5db14f079975f80012855001,0.2,0.125,control,3.0,3,85,18,3894,0,1,1,6,2,4,Radiocarbon dating considerations,84,18,5,Bachelor's degree(s),1788
+26,5e313956077089128744185b,0.5,0.2631578947368421,visual,5.6,5,55,6,4719,0,4,1,5,0,4,Subprime mortgage crisis,409,4,0,Bachelor's degree(s),2634
+27,5d5ff8b32c4db6001a4c9ca5,0.2,0.1,control,3.0,4,115,18,2870,0,2,0,8,0,4,Radiocarbon dating considerations,37,18,5,Master's degree(s),2487
+28,5c864718d2c07e0001f53603,0.5,0.25,control,2.0,4,65,19,2948,1,3,0,6,0,4,Radiocarbon dating considerations,60,15,5,Bachelor's degree(s),2677
+29,5c81b804b5bfcb00015aee82,0.7,0.35,visual,3.2857142857142856,14,135,14,3019,3,1,0,6,0,4,Subprime mortgage crisis,71,13,2,Bachelor's degree(s),1745
+30,5cfe32e6e9fbdd00019cf719,0.9,0.42857142857142855,control,5.545454545454546,11,155,19,3347,2,4,1,4,0,4,Noise-induced hearing loss,86,17,15,Bachelor's degree(s),2712
+31,5a0dc5fbab721b0001ef8254,0.8,0.4,control,7.0,5,125,17,3999,2,4,0,4,0,4,Subprime mortgage crisis,116,16,7,High School,2275
+32,5b55dd9ae173e60001963c1b,0.0,0.0,control,2.75,4,75,14,2191,0,0,0,9,1,4,Genetically modified organism,121,13,7,Bachelor's degree(s),1744
+33,5b5f1cd27757ed000198dcb0,0.3,0.15,control,1.5,2,25,6,3296,0,3,0,7,0,4,Business cycle,94,5,3,High School,2978
+34,5d14f4afcc9ce80001c2b6be,1.5,0.6818181818181818,visual,3.3333333333333335,9,95,23,3856,7,1,0,3,0,4,Noise-induced hearing loss,32,19,8,High School,3655
+35,5d00bb3b51669b000136a986,0.5,0.2631578947368421,control,2.0,8,105,17,3666,0,5,0,4,1,4,Business cycle,56,16,0,Master's degree(s),1745
+36,5df0c36dcd604d10886592a4,0.4,0.25,control,2.0,2,35,11,2684,1,0,2,6,1,4,Genetically modified organism,136,10,5,Master's degree(s),2146
+37,5e2ac2737916f010b330807f,0.5,0.25,control,3.2,5,145,31,4231,1,3,0,6,0,4,Business cycle,33,25,7,Bachelor's degree(s),3619
+38,5bba89fbe258e8000160ea8f,0.4,0.2,control,2.75,8,105,26,5072,0,4,0,6,0,4,Ethics,43,25,16,Bachelor's degree(s),2858
+39,5db28a33b1cabf000ed1a01f,0.5,0.25,visual,3.6,5,72,16,3687,1,3,0,6,0,4,Subprime mortgage crisis,99,12,4,Bachelor's degree(s),3085
+40,5dee9d7e95809453d6550cc6,0.6,0.3333333333333333,visual,3.875,8,105,12,3042,1,4,0,4,1,4,Irritable bowel syndrome,91,11,4,Bachelor's degree(s),2644
+41,5cf11692db627b001af86a0f,0.0,0.0,visual,3.212121212121212,33,335,33,2665,0,0,0,6,4,4,Irritable bowel syndrome,35,29,6,High School,2453
+42,5c636850bad3560001c2749e,0.5,0.2631578947368421,visual,3.6666666666666665,12,165,26,3611,1,3,0,5,1,4,Radiocarbon dating considerations,46,19,7,High School,3295
+43,5de55783e520274db68ca01c,0.9,0.4736842105263158,visual,2.0,19,195,36,7716,3,2,1,4,0,4,Ethics,53,28,11,Associate's degree(s),5142
+44,5dac6c101c1da300147b5d92,0.7,0.38888888888888884,visual,4.75,4,45,2,2954,1,5,0,3,1,4,Subprime mortgage crisis,49,2,3,High School,1843
+45,5de00d05988d7c0877eaa15a,1.0,0.5,visual,2.25,28,335,38,3547,5,0,0,5,0,4,Ethics,29,35,13,High School,2580
+46,5d70ec2138ac7e00012f817b,0.5,0.3125,visual,3.5,14,155,22,3381,1,3,0,3,3,4,Radiocarbon dating considerations,44,21,9,Bachelor's degree(s),3117
+47,5d9b1ce89d4ead001599ba7e,1.0,0.5,visual,3.0,5,65,10,3634,5,0,0,5,0,4,Genetically modified organism,175,9,3,Master's degree(s),2457
+48,5c10e5c5753adc0001590f2c,0.1,0.05,visual,2.2,5,75,8,3347,0,1,0,9,0,4,Radiocarbon dating considerations,56,7,0,Master's degree(s),1654
+49,5d97c29a26df700016921bd8,0.2,0.1,progress,2.0952380952380953,21,225,16,2127,0,2,0,8,0,4,Ethics,31,15,4,High School,2032
+50,5e372f7ee63d3c000b152fc2,1.6,0.8,progress,1.8076923076923077,26,335,7,2620,7,2,0,1,0,4,Ethics,25,6,21,Bachelor's degree(s),1269
+51,5d45f6d7da637a00014b9e30,0.2,0.1,progress,3.6666666666666665,9,125,17,2789,0,2,0,8,0,4,Business cycle,73,17,8,High School,2575
+52,5badcd276322c5000157c196,0.1,0.045454545454545456,progress,3.5,2,105,22,2014,0,1,0,10,0,4,Noise-induced hearing loss,39,22,1,Bachelor's degree(s),1303
+53,5e311dd7a390be11ebfc23c3,1.2,1.0,progress,5.206896551724138,29,305,27,3411,6,0,0,0,4,4,Irritable bowel syndrome,23,27,23,High School,3289
+54,5ddff33bb28cf706c57b4c88,0.4,0.2,progress,1.6666666666666667,9,155,20,3022,2,0,0,8,0,4,Ethics,56,19,7,High School,2697
+55,5c122026e6eb4e0001b2ec82,0.2,0.11111111111111112,progress,5.857142857142857,7,85,11,2743,0,2,0,6,2,4,Irritable bowel syndrome,33,10,2,High School,1745
+56,5a8ad2082a842c0001fce0f2,0.9,0.4736842105263158,progress,2.0,15,175,16,3625,4,1,0,4,1,4,Ethics,14,16,16,Bachelor's degree(s),1453
+57,5e0f443e8205266652153f5e,0.8,0.4,progress,2.0714285714285716,14,165,35,3486,4,0,0,6,0,4,Ethics,22,35,13,Bachelor's degree(s),2926
+58,5c612e1a6467ac0001b8122d,0.3,0.15,progress,2.35,20,295,31,3990,0,3,0,7,0,4,Ethics,26,30,8,Master's degree(s),2944
+59,5d0f89123382180001624f48,0.6,0.3,progress,3.5,6,85,17,3404,2,2,0,6,0,4,Business cycle,57,14,4,Master's degree(s),2232
+60,5d973069cb19b600164e2195,0.4,0.23529411764705885,progress,1.75,8,95,14,3734,1,1,1,6,1,4,Irritable bowel syndrome,53,13,7,Master's degree(s),2752
+61,5a22e6aabf56cc00017701ef,0.2,0.1,progress,1.8333333333333333,6,105,10,2439,1,0,0,9,0,4,Ethics,61,10,3,High School,1665
+62,5dde6acfcaee3edc541ad36b,0.1,0.05555555555555556,progress,3.5,2,35,5,2585,0,0,1,8,1,4,Genetically modified organism,65,4,0,High School,1515
+63,5d1dc2f9bc2b1d001a2415a5,0.3,0.16666666666666666,progress,4.090909090909091,22,245,19,3092,0,2,1,6,1,4,Radiocarbon dating considerations,35,18,13,Other,2885
+64,5e07c976f6191f137214e91f,0.1,0.05,progress,1.7333333333333334,15,205,18,4636,0,1,0,9,0,4,Genetically modified organism,43,16,13,High School,4105
+65,5b45113dcd6a5500018c5dd0,0.2,0.1,progress,3.7777777777777777,18,205,31,4137,1,0,0,9,0,4,Business cycle,34,31,8,Bachelor's degree(s),2833
+66,5d41aa9ec61bc300012c73f6,0.0,0.0,progress,3.5,22,265,33,2373,0,0,0,8,2,4,Business cycle,25,32,4,Master's degree(s),1993
+67,5dc57803c19a5c3e7ae8f683,0.2,0.1,progress,2.0,3,37,7,3117,1,0,0,9,0,4,Genetically modified organism,100,5,11,Bachelor's degree(s),2525
+68,5e3d309334bbeb107db57b93,0.2,0.1,progress,3.0,10,160,22,3891,0,2,0,8,0,4,Business cycle,119,18,9,Master's degree(s),3459
+69,5dd6d7957beb2966ce4d9e82,0.1,0.052631578947368425,progress,6.5,2,45,19,3120,0,1,0,8,1,4,Irritable bowel syndrome,55,17,5,Bachelor's degree(s),2788
+70,5d0bcf217a581100161860ae,0.3,0.15,progress,6.4,10,165,31,4005,1,1,0,8,0,4,Subprime mortgage crisis,20,27,13,Bachelor's degree(s),3037
+71,59922ece7d29e70001730450,0.7,0.3684210526315789,progress,5.0,7,85,10,3244,2,2,1,5,0,4,Subprime mortgage crisis,190,9,0,High School,2010
+72,5d2790564ea8d100190b3e4e,0.1,0.052631578947368425,progress,2.1666666666666665,6,75,14,2774,0,0,1,9,0,4,Genetically modified organism,103,12,4,Other,1839
+73,5c3ee593de04ad0001d91352,0.5,0.29411764705882354,progress,3.4705882352941178,17,185,12,2967,2,1,0,5,2,4,Radiocarbon dating considerations,89,12,2,Bachelor's degree(s),2570
+74,5d3869444a0f0500198dc192,0.5,0.25,progress,3.2941176470588234,17,225,25,2753,1,3,0,6,0,4,Business cycle,36,23,13,Bachelor's degree(s),2502
+75,5d36e5a972282e0019605fa0,0.0,0.0,progress,3.4545454545454546,11,115,34,4231,0,0,0,10,0,4,Irritable bowel syndrome,43,31,0,Unknown,1917
+76,5c4490dd4fe4f800016e6cd5,0.7,0.3181818181818181,qe,2.0,2,25,10,2482,2,3,0,6,0,4,Noise-induced hearing loss,171,10,2,Bachelor's degree(s),1719
+77,5d4a41890e604c00011ade8b,0.1,0.052631578947368425,qe,2.4615384615384617,13,185,13,2410,0,1,0,8,1,4,Genetically modified organism,66,12,6,Bachelor's degree(s),2227
+78,5d8492ecb485f60018b006a6,0.6,0.2857142857142857,qe,2.75,4,85,13,2942,0,6,0,4,1,4,Noise-induced hearing loss,96,12,2,Doctorate degree,2635
+79,5d95c68ac9a1c50019225baf,0.7,0.4117647058823529,qe,3.25,4,115,7,4970,2,3,0,2,3,4,Business cycle,76,7,4,Master's degree(s),1296
+80,5cf9179b8c98dc0001d5a431,0.9,0.42857142857142855,qe,4.75,4,45,17,3363,3,3,0,4,1,4,Noise-induced hearing loss,74,14,5,Bachelor's degree(s),2417
+81,5dfcc5cf7dd4779b542dc38d,1.0,0.5,qe,3.0,3,45,13,4423,4,2,0,4,0,4,Subprime mortgage crisis,39,12,16,Master's degree(s),3081
+82,5b89c9494457e80001f23b86,0.6,0.3333333333333333,qe,2.25,4,45,13,2378,3,0,0,6,1,4,Radiocarbon dating considerations,64,9,2,High School,2116
+83,5e2d57b2ce5e9a3542ef6890,0.0,0.0,qe,1.8571428571428572,7,135,9,2222,0,0,0,10,0,4,Irritable bowel syndrome,9,7,23,High School,2057
+84,5a57b9dfac5624000153be46,0.4,0.22222222222222224,qe,3.857142857142857,7,95,13,2858,0,4,0,4,2,4,Ethics,98,13,5,Bachelor's degree(s),2520
+85,5ceda8920afd6e0016a9ed7b,0.9,0.45,qe,2.8,5,55,18,2320,4,1,0,5,0,4,Subprime mortgage crisis,111,10,2,Master's degree(s),1923
+86,5c7c3a866fa756000182443e,0.5,0.25,qe,2.0,2,55,18,3212,1,3,0,6,0,4,Radiocarbon dating considerations,78,18,5,Bachelor's degree(s),2684
+87,5c703ae661dd7e0001a15495,0.2,0.1,qe,3.230769230769231,13,175,22,2280,0,2,0,8,0,4,Business cycle,54,16,2,High School,1771
+88,5d23228194f96d00011ddba7,0.7,0.35,qe,3.857142857142857,7,85,19,2636,3,1,0,6,0,4,Radiocarbon dating considerations,79,19,0,Master's degree(s),1743
+89,5db29ce254945b003c8ef699,0.8,0.4210526315789474,qe,2.2,5,95,8,4721,2,4,0,3,1,4,Business cycle,272,6,4,High School,2290
+90,5cd168e9f651de0015a062d2,0.5,0.2631578947368421,qe,1.5,2,25,4,3506,2,1,0,6,1,4,Radiocarbon dating considerations,225,4,2,High School,3236
+91,5d906cd46ecd0600155804b1,0.5,0.29411764705882354,qe,1.75,4,75,12,2814,1,0,3,6,0,4,Genetically modified organism,139,10,5,Master's degree(s),2703
+92,5a7fab56f49c9a0001f3549e,0.6,0.3157894736842105,qe,3.1666666666666665,6,105,11,2725,2,1,1,6,0,4,Radiocarbon dating considerations,113,9,5,Bachelor's degree(s),2574
+93,5b7b22a5b5727c0001de1369,0.1,0.05882352941176471,qe,4.285714285714286,7,95,15,5679,0,0,1,8,1,4,Genetically modified organism,65,13,7,Bachelor's degree(s),3419
+94,5dce29700ad506063969a4a5,1.3,0.65,qe,2.0,2,35,9,4959,6,1,0,3,0,4,Ethics,190,6,3,High School,3588
+95,5e9768cc5f33bb22590fb0aa,1.1,0.5,progress,3.3333333333333335,6,65,22,2571,5,1,0,5,0,4,Noise-induced hearing loss,50,22,0,High School,1336
+96,5daee5d378871500151991ff,0.4,0.2,progress,4.6,30,356,20,3625,0,4,0,5,2,4,Noise-induced hearing loss,15,19,34,Doctorate degree,2326
+97,5ed416a5b45e9d0ca2e233f6,1.0,0.45454545454545453,progress,5.142857142857143,7,95,21,3243,3,4,0,4,0,4,Noise-induced hearing loss,17,20,15,High School,3048
+98,5e2a35ee4b7f660a610d186d,0.5,0.25,progress,3.5,8,105,9,4370,0,5,0,5,0,4,Radiocarbon dating considerations,263,9,5,Bachelor's degree(s),2693
+99,5f027693e9d8624152933196,1.0,0.45454545454545453,progress,3.6666666666666665,9,125,37,2594,2,6,0,3,0,4,Noise-induced hearing loss,28,25,0,Associate's degree(s),1676
+100,5d9606b7f04d7d0015a6169a,1.6,0.8,progress,5.25,4,115,45,3059,7,0,2,2,0,4,Noise-induced hearing loss,11,45,4,High School,2511
+101,5e6f7716f51849000a34a0b3,0.0,0.0,progress,3.5833333333333335,12,135,1,2762,0,0,0,11,0,4,Noise-induced hearing loss,0,1,28,High School,50
+102,5b56d2c8dede4a0001ee7b36,0.2,0.1,progress,3.8,10,105,23,2313,0,2,0,8,0,4,Radiocarbon dating considerations,65,21,3,Bachelor's degree(s),1788
+103,5ec51889e0ceef4580f1d124,0.5,0.25,progress,4.285714285714286,7,85,15,3815,1,3,0,6,0,4,Radiocarbon dating considerations,73,15,11,Bachelor's degree(s),2341
+104,5ebe59309264f81ae5a87a30,0.3,0.14285714285714285,control,5.285714285714286,7,95,15,2864,0,3,0,7,1,4,Noise-induced hearing loss,87,15,5,High School,1686
+105,5e7b99d461d3e41ae8ad364e,0.1,0.05,control,4.4,5,55,13,2639,0,1,0,9,0,4,Irritable bowel syndrome,57,13,5,High School,2443
+106,5eab7843de4724150babfd6b,1.9,0.8636363636363635,control,4.4,5,65,5,3386,9,1,0,1,0,4,Noise-induced hearing loss,75,3,0,High School,493
+107,5a9fe0026219a30001f55a2c,0.4,0.19047619047619047,control,3.5,2,225,37,2918,0,4,0,6,1,4,Noise-induced hearing loss,18,36,20,Doctorate degree,2697
+108,5a622b2d13898300014b20d6,0.4,0.2105263157894737,control,2.5714285714285716,7,105,20,4241,0,3,1,6,0,4,Irritable bowel syndrome,60,17,2,High School,3732
+109,5c883760e0f6e50017f0abbb,0.2,0.16666666666666669,qe,2.6666666666666665,6,105,12,3687,0,1,1,4,4,4,Subprime mortgage crisis,75,12,4,Bachelor's degree(s),2164
+110,5ec1abeeb2a0490cf78d96a4,1.0,0.5,qe,2.0,3,35,10,3806,3,4,0,3,0,4,Ethics,94,7,6,High School,2031
+111,5eac2099b273a00513d31d9f,0.9,0.45,qe,3.5,4,55,19,3949,4,1,0,5,0,4,Irritable bowel syndrome,65,13,5,Bachelor's degree(s),3510
+112,5f120e2fe67ff7132e8676ca,0.3,0.15,qe,3.142857142857143,7,105,18,3062,0,3,0,7,0,4,Subprime mortgage crisis,53,16,7,High School,2405
+113,5ed51cadb2c5c106a6d1f561,0.6,0.3,qe,2.1,10,125,18,2568,3,0,0,7,0,4,Ethics,66,18,4,Bachelor's degree(s),2088
+114,5ee9fc1362000a034812d384,0.8,0.5,qe,3.0,5,55,20,3747,2,2,2,3,1,4,Irritable bowel syndrome,104,13,9,High School,2060
+115,573f59f150f5e6000dcc4963,0.3,0.15,qe,3.142857142857143,7,145,7,2946,0,3,0,7,0,4,Ethics,9,6,1,Bachelor's degree(s),1831
+116,5cb8c4fcccb16200177ab49d,0.4,0.2105263157894737,qe,3.3333333333333335,3,45,7,3934,0,4,0,5,1,4,Subprime mortgage crisis,163,7,3,High School,3746
+117,5e7f9714e74e0c66d2a04098,0.3,0.16666666666666666,qe,2.5,2,25,8,3672,0,3,0,5,2,4,Subprime mortgage crisis,169,8,0,Bachelor's degree(s),1351
+118,5ddc359be0b21bb985c6804d,0.5,0.3125,visual,3.5,8,105,8,2940,1,1,2,5,1,4,Genetically modified organism,88,5,3,Bachelor's degree(s),2566
+119,58f669cefb4d7500014af69b,0.0,0.0,visual,5.0,7,155,6,3395,0,0,0,9,1,4,Genetically modified organism,35,5,2,Other,3030
+120,5f0214e58782120a8c970fd6,0.0,0.0,visual,1.9090909090909092,11,155,20,4919,0,0,0,8,2,4,Genetically modified organism,38,19,8,Applied or professional doctorate degree(s),1803
+121,5d77c0eb4a666c0019561a80,0.2,0.09090909090909091,visual,2.1333333333333333,15,225,19,5127,0,2,0,9,0,4,Noise-induced hearing loss,52,14,0,Bachelor's degree(s),1400
+122,5e31a1526ef37a1879a94441,0.6,0.3,visual,4.0,9,155,19,4018,1,4,0,5,1,4,Noise-induced hearing loss,41,14,8,Bachelor's degree(s),3686
+123,5ee49f3f80158100097e6f8c,0.5,0.25,visual,4.7,20,235,12,3557,2,1,0,7,0,4,Business cycle,40,11,25,Master's degree(s),3186
+124,56f745653bd969000d170c15,0.5,0.25,visual,3.0,6,85,12,3380,0,5,0,5,0,4,Business cycle,103,10,5,Associate's degree(s),1746
+125,5eb58476f88d4008fa483809,0.9,0.45,visual,3.8823529411764706,17,195,21,4284,3,3,0,4,0,4,Business cycle,72,20,0,Doctorate degree,1922
+126,5eeb306d69a87827326a862c,0.3,0.15,visual,3.8666666666666667,15,155,20,2946,0,3,0,7,0,4,Business cycle,23,18,15,Applied or professional doctorate degree(s),2275
