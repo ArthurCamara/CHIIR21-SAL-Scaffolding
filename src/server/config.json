@@ -1,7 +1,0 @@
-{
-    "MIN_TERM_COUNT": 50,
-    "OVERLAP_THRESHOLD": 0.2,
-    "POOLING_FUNCTION" : "max",
-    "SIM_THRESHOLD": 0.75,
-    "SUBTOPIC_EBEDDINGS_PATH": "subtopic_vectors.pkl"
-}
