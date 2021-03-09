@@ -4,7 +4,13 @@ This is the data and analysis code for the paper "Searching to Learn with Instru
 
 
 
+The paper PDF can be found [here](Searching_to_Learn.pdf).
+
+
+
 More details can be found at the [analysis notebook](Analysis.ipynb).
+
+---
 
 Under [data](data/), you will find the following files:
 
@@ -13,3 +19,33 @@ Under [data](data/), you will find the following files:
 - [`consolidated.csv`](data./consolidated.json): Consolidates statistics per user. Use the notebook to generate this file
 - [`vocab.json`](data/vocab.json): Vocabulary file with the terms used for the VKS pre and post tests.
 - [`blacklist.txt`](data/blacklist.txt): List of blacklisted domains that seemed to be similar or extracts from Wikipedia.
+
+
+
+---
+
+Any questions, please open an issue or send an email to:
+
+[A.BarbosaCamara [at] tudelft.nl](mailto:A.BarbosaCamara@tudelft.nl)
+
+---
+
+If you want to cite this paper, please use:
+
+```latex
+@INPROCEEDINGS{Camara2021,
+  title     = "Searching to Learn with Instructional Scaffolding",
+  booktitle = "Proceedings of the 2021 Conference on Human Information
+               Interaction and Retrieval",
+  author    = "C{\^a}mara, Arthur and Roy, Nirmal and Maxwell, David and Hauff,
+               Claudia",
+  publisher = "Association for Computing Machinery",
+  pages     = "209--218",
+  series    = "CHIIR '21",
+  month     =  mar,
+  year      =  2021,
+  address   = "New York, NY, USA",
+  location  = "Canberra ACT, Australia"
+}
+```
+
