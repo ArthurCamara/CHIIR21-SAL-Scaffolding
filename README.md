@@ -32,7 +32,7 @@ Any questions, please open an issue or send an email to:
 
 If you want to cite this paper, please use:
 
-```latex
+```
 @INPROCEEDINGS{Camara2021,
   title     = "Searching to Learn with Instructional Scaffolding",
   booktitle = "Proceedings of the 2021 Conference on Human Information
